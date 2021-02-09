@@ -17,10 +17,9 @@ const student2: Student = {
   location: "Canada",
 }
 // Create array o type Student
-const studentsList = [student1, student2];
-type studentsList = Array<Student>;
+const studentsList: Array<Student> = [student1, student2];
 
-const table = document.createElement('table');
+const table = document.createElement('TABLE');
 const tbody = document.createElement('tbody');
 
 studentsList.forEach((theStudent: Student) => {
