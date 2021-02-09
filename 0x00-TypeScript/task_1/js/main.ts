@@ -44,3 +44,28 @@ export const printTeacher: printTeacherFunction = (firstName: string, lastName: 
 
 //example
 console.log(printTeacher("John", "Doe"));
+
+// TASK 4
+// https://www.typescriptlang.org/docs/handbook/interfaces.html
+// Difference between the static and instance sides of classes
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentInterface;
+}
+interface StudentInterface {
+  firstName: string;
+  lastName: string;
+}
+class StudentClass implements StudentInterface{
+  firstName: string;
+  lastName: string;
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  workOnHomework() {
+    return "Currently working";
+  }
+  displayName() {
+    this.firstName;
+  }
+}
