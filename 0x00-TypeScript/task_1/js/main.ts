@@ -11,13 +11,3 @@ interface Teacher {
   yearsOfExperience?: number;
   [customAttribute: string]: any; 
 }
-
-const teacher3: Teacher = {
-  firstName: 'John',
-  fullTimeEmployee: false,
-  lastName: 'Doe',
-  location: 'London',
-  contract: false,
-};
-
-console.log(teacher3);
