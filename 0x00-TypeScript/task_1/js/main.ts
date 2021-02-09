@@ -34,6 +34,10 @@ const director1: Directors = {
 console.log(director1);
 
 // TASK3 Printing teachers
+interface printTeacherFunction {
+  printTeacher(firstName: string, lastName: string): string;
+}
+
 function printTeacher(firstName: string, lastName: string): string {
   return `${firstName[0]}. ${lastName}`;
 }
