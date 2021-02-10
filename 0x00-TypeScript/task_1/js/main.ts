@@ -57,17 +57,17 @@ interface StudentClassInterface {
   workOnHomework(): string;
   displayName(): string;
 }
-export class StudentClass implements StudentClassInterface{
+export class StudentClass implements StudentClassInterface {
   firstName: string;
   lastName: string;
   constructor(firstName: string, lastName: string) {
     this.firstName = firstName;
     this.lastName = lastName;
   }
-  workOnHomework() {
+  workOnHomework(): string {
     return "Currently working";
   }
-  displayName() {
+  displayName(): string {
     return this.firstName;
   }
 }
