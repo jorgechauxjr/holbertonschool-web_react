@@ -57,7 +57,7 @@ interface StudentClassInterface {
   workOnHomework(): string;
   displayName(): string;
 }
-export class StudentClass implements StudentClassInterface {
+export const StudentClass: StudentConstructor = class StudentClass implements StudentClassInterface {
   firstName: string;
   lastName: string;
   constructor(firstName: string, lastName: string) {
