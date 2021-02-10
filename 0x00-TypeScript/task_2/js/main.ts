@@ -31,7 +31,7 @@ export class Teacher implements TeacherInterface {
     return "Getting to work";
   }
 }
-export function createEmployee(salary: number | string): Director | Teacher {
+export function createEmployee(salary: number | string): DirectorInterface | TeacherInterface {
   if (typeof salary === 'number' && salary < 500) return new Teacher();
   return new Director();
 }
@@ -41,10 +41,10 @@ export function createEmployee(salary: number | string): Director | Teacher {
 // console.log(createEmployee('$500'));
 
 // TASK 6 Creating functions specific to employees
-export function isDirector(employee: Director | Teacher):  employee is Director {
+export function isDirector(employee: DirectorInterface | TeacherInterface):  employee is Director {
   return employee.workFromHome() === 'Working from home';
 }
-export function executeWork(employee: Director | Teacher): string {
+export function executeWork(employee: DirectorInterface | TeacherInterface): string {
   if (isDirector(employee)) return employee.workDirectorTasks();
   return employee.workTeacherTasks();
 }
