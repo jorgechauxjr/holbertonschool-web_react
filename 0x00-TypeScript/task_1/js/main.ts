@@ -49,7 +49,7 @@ console.log(printTeacher("John", "Doe"));
 // https://www.typescriptlang.org/docs/handbook/interfaces.html
 // Difference between the static and instance sides of classes
 interface StudentClassConstructor {
-  new (firstName: string, lastName: string): StudentClassInterface;
+  new(firstName: string, lastName: string): StudentClassInterface;
 }
 interface StudentClassInterface {
   firstName: string;
