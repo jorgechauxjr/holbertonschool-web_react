@@ -1,4 +1,4 @@
-// TASK 5 Advanced types Part 1
+// TASK 5 Advanced types Part 1 ===============
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
@@ -40,7 +40,7 @@ export function createEmployee(salary: number | string): DirectorInterface | Tea
 // console.log(createEmployee(1000));
 // console.log(createEmployee('$500'));
 
-// TASK 6 Creating functions specific to employees
+// TASK 6 Creating functions specific to employees ============
 export function isDirector(employee: DirectorInterface | TeacherInterface):  employee is Director {
   return employee.workFromHome() === 'Working from home';
 }
@@ -51,3 +51,19 @@ export function executeWork(employee: DirectorInterface | TeacherInterface): str
 //test
 // executeWork(createEmployee(200));
 // executeWork(createEmployee(1000));
+
+// TASK 7. String literal types ==================
+// https://www.typescriptlang.org/docs/handbook/literal-types.html
+type Subjects = "Math" | "History";
+export function teachClass(todayClass: Subjects): string {
+  // Ternary operator in Typescript
+  return todayClass === 'Math' ? "Teaching Math" : "Teaching History"
+}
+/* if (todayClass === "Math") {
+    return "Teaching Math";
+  } else if (todayClass === "History") {
+    return "Teaching History";
+  } */
+// test
+// teachClass('Math');
+// teachClass('History');
