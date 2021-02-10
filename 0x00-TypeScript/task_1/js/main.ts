@@ -54,8 +54,10 @@ interface StudentClassConstructor {
 interface StudentClassInterface {
   firstName: string;
   lastName: string;
+  workOnHomework(): string;
+  displayName(): string;
 }
-class StudentClass implements StudentClassInterface{
+export class StudentClass implements StudentClassInterface{
   firstName: string;
   lastName: string;
   constructor(firstName: string, lastName: string) {
@@ -66,6 +68,6 @@ class StudentClass implements StudentClassInterface{
     return "Currently working";
   }
   displayName() {
-    this.firstName;
+    return this.firstName;
   }
 }
