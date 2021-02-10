@@ -35,8 +35,19 @@ export function createEmployee(salary: number | string): Director | Teacher {
   if (typeof salary === 'number' && salary < 500) return new Teacher();
   return new Director();
 }
-
 // test
 // console.log(createEmployee(200));
 // console.log(createEmployee(1000));
 // console.log(createEmployee('$500'));
+
+// TASK 6 Creating functions specific to employees
+export function isDirector(employee: Director | Teacher):  employee is Director {
+  return employee.workFromHome() === 'Working from home';
+}
+export function executeWork(employee: Director | Teacher): string {
+  if (isDirector(employee)) return employee.workDirectorTasks();
+  return employee.workTeacherTasks();
+}
+//test
+// executeWork(createEmployee(200));
+// executeWork(createEmployee(1000));
