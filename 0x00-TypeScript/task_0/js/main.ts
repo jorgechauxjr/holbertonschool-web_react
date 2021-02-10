@@ -19,18 +19,31 @@ const student2: Student = {
 // Create array o type Student
 const studentsList: Array<Student> = [student1, student2];
 
-const table = document.createElement('TABLE');
-const tbody = document.createElement('tbody');
+const table: HTMLTableElement = document.createElement('table');
+const thead: HTMLTableSectionElement = document.createElement('thead');
+const tbody: HTMLTableSectionElement = document.createElement('tbody');
+const trHead: HTMLTableRowElement = document.createElement('tr');
+const th1: HTMLTableHeaderCellElement = document.createElement('th');
+const th2: HTMLTableHeaderCellElement = document.createElement('th');
 
-studentsList.forEach((theStudent: Student) => {
-  const row = document.createElement('tr');
-  const cellName = document.createElement('td');
-  const cellLocation = document.createElement('td');
-  cellName.textContent = theStudent.firstName;
-  cellLocation.textContent = theStudent.location;
-  row.appendChild(cellName);
-  row.appendChild(cellLocation);
-  tbody.appendChild(row);
-});
-table.appendChild(tbody);
-document.body.appendChild(table);
+th1.innerHTML = 'firstName';
+th2.innerHTML = 'location';
+
+table.append(thead);
+table.append(tbody);
+thead.append(trHead);
+trHead.append(th1);
+trHead.append(th2);
+
+studentsList.forEach((student) => {
+    const row: HTMLTableRowElement = table.insertRow();
+    tbody.append(row);
+    const cell: HTMLTableCellElement = row.insertCell();
+    const text: Text = document.createTextNode(student.firstName);
+    cell.appendChild(text);
+
+    const cell2: HTMLTableCellElement = row.insertCell();
+    const text2: Text = document.createTextNode(student.location);
+    cell2.appendChild(text2);
+})
+document.body.appendChild(table)
