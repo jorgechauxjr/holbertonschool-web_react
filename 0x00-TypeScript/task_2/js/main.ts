@@ -54,10 +54,13 @@ export function executeWork(employee: DirectorInterface | TeacherInterface): str
 
 // TASK 7. String literal types ==================
 // https://www.typescriptlang.org/docs/handbook/literal-types.html
-// Ternary operator in Typescript
+
 type Subjects = 'Math' | 'History';
-export function teachClass(todayClass: Subjects): string {
-  return todayClass === 'Math' ? 'Teaching Math' : 'Teaching History';
+export function teachClass(todayClass:Subjects): string {
+  if(todayClass === 'Math')
+      return 'Teaching Math';
+  else if (todayClass === 'History')
+      return 'Teaching History';
 }
 // test
 // console.log(teachClass('Math'));
