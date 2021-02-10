@@ -65,5 +65,5 @@ export function teachClass(todayClass: Subjects): string {
   // return todayClass === 'Math' ? "Teaching Math" : "Teaching History"
 }
 // test
-// teachClass('Math');
-// teachClass('History');
+teachClass('Math');
+teachClass('History');
