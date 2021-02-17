@@ -7,3 +7,5 @@
 - How to use Enzyme’s Shadow rendering to test your application
 -How to use React with Webpack & Babel
 ##### Twitter [@jorgechauxjr](https://twitter.com/jorgechauxjr)
+Deploy react app with github pages [CLICK HERE](https://jorgechauxjr.github.io/holbertonschool-web_react/)
+Source Code [here](https://github.com/jorgechauxjr/holbertonschool-web_react/tree/main/0x02-react_intro/task_2/dashboard)
