@@ -28,3 +28,4 @@ yarn-error.log*
 /dist/bundle.js
 /dist/bundle.js.LICENSE.txt
 /dist/favicon.ico
+/dist/index.html
