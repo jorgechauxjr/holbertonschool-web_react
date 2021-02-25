@@ -1,35 +1,26 @@
-/*
-    test that App renders without crashing
-    verify that App renders a div with the class App-header
-    verify that App renders a div with the class App-body
-    verify that App renders a div with the class App-footer
-*/
+import React from 'react';
 import { shallow } from 'enzyme';
-import React from "react";
+import { expect } from 'chai';
 import App from './App';
-import Notifications from '../Notifications/Notifications';
+import CourseList from '../CourseList/CourseList';
 import Login from '../Login/Login';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 
+describe('Test App.js', () => {
+  it('App without crashing', (done) => {
+    expect(shallow(<App />).exists());
+    done();
+  });
 
-describe("test App", () => {
-    it("renders without crashing", () => {
-        shallow(<App />);
-    });
+  it('check that CourseList is not displayed when isLoggedIn is false', (done) => {
     const wrapper = shallow(<App />);
-    it("Notifications", () => {
-        shallow(<Notifications />);
-        
-    });
-    it("Header", () => {
-        shallow(<Header />);
-    });
-    it("Login", () => {
-        shallow(<Login />);
-    });
-    it("Footer", () => {
-        shallow(<Footer />);
-    });
-}); 
-  
+    expect(wrapper.find(CourseList)).to.have.lengthOf(0);
+    done();
+  });
+
+  it('check that CourseList is displayed and Login is not displayed when isLoggedIn is true', (done) => {
+    const wrapper = shallow(<App isLoggedIn={true} />);
+    expect(wrapper.find(CourseList)).to.have.lengthOf(1);
+    expect(wrapper.find(Login)).to.have.lengthOf(0);
+    done();
+  });
+});
