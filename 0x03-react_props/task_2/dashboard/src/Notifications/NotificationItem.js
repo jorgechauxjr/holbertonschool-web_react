@@ -3,7 +3,6 @@ import { getLatestNotification }  from '../utils/utils'
 
 export function AllNotifyItems(){
     return (
-      // viene de Notifications.js
         <React.Fragment>
             <NotificationItem type='default' value='New course available' />
             <NotificationItem type='urgent' value='New resume available' />
