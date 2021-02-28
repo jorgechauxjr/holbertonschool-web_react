@@ -1,22 +1,30 @@
-import { shallow } from 'enzyme';
-import React from "react";
+import React from 'react';
 import NotificationItem from './NotificationItem';
+import { shallow } from 'enzyme';
 
+// const wrapper = shallow(<NotificationItem/>);
 
-describe("Test Suite NotificationItem", () => {
-    it("renders without crashing", () => {
-        const wrapper = shallow(<NotificationItem />);
-        shallow(<NotificationItem />);
-        expect(wrapper.exists());
-    });
-    
-    it("renders with correct type and value", () => {
-        const wrapper = shallow(<NotificationItem type='default' value='test'/>);
-        expect(wrapper.containsMatchingElement(<li data-priority="default">test</li>)).toEqual(true);
-    });
-    it("renders with correct html", () => {
-        const wrapper = shallow(<NotificationItem html={{ __html: '<u>test</u>' }} />);
-        expect(wrapper.html()).toEqual('<li><u>test</u></li>');
-    });
-   
+describe("NotificationItem.test.js", () => {
+  it('correct component rendering', () => {
+    shallow(<NotificationItem />);
+  });
+  it('correct component rendering - case1 - value, type', () => {
+    const type = "default";
+    const value = "test";
+    const html = undefined;
+    const wrapper = shallow(<NotificationItem type={ type } value={ value }/>);
+    const li = wrapper.find('li');
+    expect(li.exists()).toEqual(true);
+    expect(li.props()['data-notification-type']).toEqual("default");
+    expect(li.prop('dangerouslySetInnerHTML')).toEqual(html);
+    expect(li.text()).toEqual(value);
+  });
+
+  it('correct component rendering - case2 - html', () => {
+    const html = '<u>test</u>';
+    const wrapper = shallow(<NotificationItem html={{ __html: '<u>test</u>' }}/>);
+    const li = wrapper.find('li');
+    expect(li.exists()).toEqual(true);
+    expect(wrapper.html()).toEqual(`<li data-notification-type=\"default\">${ html }</li>`);
+  });
 });

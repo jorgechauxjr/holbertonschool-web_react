@@ -1,19 +1,46 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
-import CourseList from './CourseList'
-import CourseListRow from './CourseListRow'
+import CourseList from '../CourseList/CourseList';
+import CourseListRow from './CourseListRow';
 
-describe('Test CourseList.js', () => {
-  it('CourseList without crashing', (done) => {
-    expect(shallow(<CourseList />).exists());
-    done();
-  });
+const listCourses = [
+  {id: 1, name: 'ES6', credit: 60},
+  {id: 2, name: 'Webpack', credit: 20},
+  {id: 3, name: 'React', credit: 40}
+];
 
-  it('renders 5 diferent rows', (done) => {
+describe("CourseList.test.js", () => {
+  it('Correct component rendering', () => {
     const wrapper = shallow(<CourseList />);
-    
-    expect(wrapper.find(CourseListRow)).to.have.lengthOf(5);
-    done();
+    expect(wrapper.exists()).toEqual(true);
+  });
+  it('Correct rows', () => {
+    const wrapper = shallow(<CourseList listCourses={ listCourses }/>);
+    expect(wrapper.find(CourseListRow).length).toEqual(5);
+
+    expect(wrapper.find(CourseListRow).at(0).html()).toContain('Available courses');
+
+    expect(wrapper.find(CourseListRow).at(1).html()).toContain('Course name');
+    expect(wrapper.find(CourseListRow).at(1).html()).toContain('Credit');
+
+    expect(wrapper.find(CourseListRow).at(2).html()).toContain('ES6');
+    expect(wrapper.find(CourseListRow).at(2).html()).toContain('60');
+
+    expect(wrapper.find(CourseListRow).at(3).html()).toContain('Webpack');
+    expect(wrapper.find(CourseListRow).at(3).html()).toContain('20');
+
+    expect(wrapper.find(CourseListRow).at(4).html()).toContain('React');
+    expect(wrapper.find(CourseListRow).at(4).html()).toContain('40');
+  });
+  it('empty list', () => {
+    const wrapper = shallow(<CourseList listCourses={ [] }/>);
+    expect(
+      wrapper.containsMatchingElement(<tr><td>No course available yet</td></tr>)
+    ).toBeTruthy();
+    expect(wrapper.find(CourseListRow).length).toEqual(2);
+  });
+  it('fill list', () => {
+    const wrapper = shallow(<CourseList listCourses={ listCourses }/>);
+    expect(wrapper.find(CourseListRow).length).toEqual(5);
   });
 });

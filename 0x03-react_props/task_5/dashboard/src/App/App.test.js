@@ -1,26 +1,42 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
 import App from './App';
 import CourseList from '../CourseList/CourseList';
 import Login from '../Login/Login';
 
-describe('Test App.js', () => {
-  it('App without crashing', (done) => {
-    expect(shallow(<App />).exists());
-    done();
+const wrapper = shallow(<App />);
+describe("App.test.js", () => {
+  it('Correct component rendering', () => {
+    shallow(<App />);
   });
 
-  it('check that CourseList is not displayed when isLoggedIn is false', (done) => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find(CourseList)).to.have.lengthOf(0);
-    done();
+  it('renders App-header', () => {
+    expect(wrapper.find('div.App-header').exists()).toEqual(true);
   });
-
-  it('check that CourseList is displayed and Login is not displayed when isLoggedIn is true', (done) => {
-    const wrapper = shallow(<App isLoggedIn={true} />);
-    expect(wrapper.find(CourseList)).to.have.lengthOf(1);
-    expect(wrapper.find(Login)).to.have.lengthOf(0);
-    done();
+  it('renders App-body', () => {
+    expect(wrapper.find('div.App-body').exists()).toEqual(true);
+  });
+  it('renders App-footer', () => {
+    expect(wrapper.find('div.App-footer').exists()).toEqual(true);
+  });
+  it('renders Header', () => {
+    expect(wrapper.find('Header').exists()).toEqual(true);
+  });
+  it('renders Login', () => {
+    expect(wrapper.find('Login').exists()).toEqual(true);
+  });
+  it('renders Footer', () => {
+    expect(wrapper.find('Footer').exists()).toEqual(true);
+  });
+  it('not renders CourseList by default', () => {
+    expect(wrapper.find(CourseList).exists()).toEqual(false);
+  });
+  it('CourseList exist when isLoggedIn = true', () => {
+    const wrapper = shallow(<App isLoggedIn={ true } />);
+    expect(wrapper.find(CourseList).exists()).toEqual(true);
+  });
+  it('CourseList exist when isLoggedIn = false', () => {
+    const wrapper = shallow(<App isLoggedIn={ false } />);
+    expect(wrapper.find(Login).exists()).toEqual(true);
   });
 });
