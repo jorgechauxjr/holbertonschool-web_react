@@ -21,7 +21,7 @@ const listNotifications = [
   {id: 3, html: { __html: getLatestNotification()} , type: "urgent", value: undefined},
 ];
 
-export default class App extends Component {
+class App extends React.Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool
   }
@@ -55,3 +55,4 @@ export default class App extends Component {
   }
 }
 
+export default App;
