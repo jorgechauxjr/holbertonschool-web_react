@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './App.css';
 import Notifications from "../Notifications/Notifications";
@@ -22,13 +22,6 @@ const listNotifications = [
 ];
 
 class App extends React.Component {
-  static propTypes = {
-    isLoggedIn: PropTypes.bool
-  }
-
-  static defaultProps  = {
-    isLoggedIn: false
-  }
 
   render() {
     let mainArea = <Login />;
@@ -54,5 +47,13 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool
+};
+
+App.defaultProps = {
+  isLoggedIn: false
+};
 
 export default App;
