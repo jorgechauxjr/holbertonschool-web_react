@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './App.css';
 import Notifications from "../Notifications/Notifications";
@@ -22,12 +22,24 @@ const listNotifications = [
 ];
 
 class App extends React.Component {
-  static propTypes = {
-    isLoggedIn: PropTypes.bool
+
+  // https://es.reactjs.org/docs/handling-events.html
+
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  static defaultProps  = {
-    isLoggedIn: false
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleClick);
+  }
+
+  handleClick(event) {
+    event.preventDefault();
+    if (event.keyCode === 72 && event.ctrlKey) {
+      alert('Logging you out');
+      this.props.logOut();
+    }
   }
 
   render() {
@@ -54,5 +66,15 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func
+};
+
+App.defaultProps = {
+  isLoggedIn: false,
+  logOut: () => void(0)
+};
 
 export default App;
