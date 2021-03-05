@@ -1,6 +1,4 @@
 const path = require("path");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: "development",
@@ -20,13 +18,6 @@ module.exports = {
     compress: true,
     port: 8564,
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-      filename: './index.html',
-      favicon: './public/favicon.ico'
-    }),
-  ],
   module: {
     rules: [
       {
@@ -39,14 +30,14 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(gif|png|jpe?g|svg|ico)$/i,
+        test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
           "file-loader",
           {
             loader: "image-webpack-loader",
             options: {
-              bypassOnDebug: true,
-              disable: true,
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
             },
           },
         ],

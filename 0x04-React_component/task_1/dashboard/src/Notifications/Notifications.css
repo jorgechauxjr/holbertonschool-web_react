@@ -1,34 +1,35 @@
+:root {
+  --color-white: #fff;
+  --color-hb: #e1354b;
+  --color-blue: #0000ff;
+  --color-red: #ff0000;
+}
+
 .Notifications {
-  padding: 30px 5px;
-  border: 1px solid #E0354B;
-  border-style: dashed;
-  margin-bottom: 20px;
-  position: absolute;
-  top: 5;
-  right: 0;
-  text-align: left;
-  margin-right: 10px;
-  padding: 20px 20px;
+  border: 3px dashed #e1354b;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  width: 25rem;
+}
+
+ul li[data-notification-type='default'] {
+  color: var(--color-blue);
+}
+
+ul li[data-notification-type='urgent'] {
+  color: var(--color-red);
 }
 
 .menuItem {
-  top: 0;
-  right: 50px;
-  text-align: right;
-  margin: 10px;
+  margin-bottom: 10px;
 }
 
-#root-notifications {
-  padding: 5px;
-}
-.Notifications > p:first-of-type {
-  padding-bottom: 10px;
-}
-
-li[data-notification-type="default"] {
-  color: #1d0563;
-}
-
-li[data-notification-type="urgent"] {
-  color: #ff0200;
+.notification-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 12px;
+  flex-wrap: wrap;
+  align-items: flex-end;
 }

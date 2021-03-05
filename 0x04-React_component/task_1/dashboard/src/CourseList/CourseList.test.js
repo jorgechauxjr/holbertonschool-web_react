@@ -1,46 +1,39 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CourseList from '../CourseList/CourseList';
+import { expect } from 'chai';
+import CourseList from './CourseList'
 import CourseListRow from './CourseListRow';
 
-const listCourses = [
-  {id: 1, name: 'ES6', credit: 60},
-  {id: 2, name: 'Webpack', credit: 20},
-  {id: 3, name: 'React', credit: 40}
-];
+describe('Test CourseList.js', () => {
+  const listCourses = [
+    { id: 1, name: 'ES6', credit: 60 },
+    { id: 2, name: 'Webpack', credit: 20 },
+    { id: 3, name: 'React', credit: 40 }
+  ];
 
-describe("CourseList.test.js", () => {
-  it('Correct component rendering', () => {
-    const wrapper = shallow(<CourseList />);
-    expect(wrapper.exists()).toEqual(true);
+  it('CourseList without crashing', (done) => {
+    expect(shallow(<CourseList />).exists());
+    done();
   });
-  it('Correct rows', () => {
-    const wrapper = shallow(<CourseList listCourses={ listCourses }/>);
-    expect(wrapper.find(CourseListRow).length).toEqual(5);
 
-    expect(wrapper.find(CourseListRow).at(0).html()).toContain('Available courses');
-
-    expect(wrapper.find(CourseListRow).at(1).html()).toContain('Course name');
-    expect(wrapper.find(CourseListRow).at(1).html()).toContain('Credit');
-
-    expect(wrapper.find(CourseListRow).at(2).html()).toContain('ES6');
-    expect(wrapper.find(CourseListRow).at(2).html()).toContain('60');
-
-    expect(wrapper.find(CourseListRow).at(3).html()).toContain('Webpack');
-    expect(wrapper.find(CourseListRow).at(3).html()).toContain('20');
-
-    expect(wrapper.find(CourseListRow).at(4).html()).toContain('React');
-    expect(wrapper.find(CourseListRow).at(4).html()).toContain('40');
+  it('renders 5 diferent rows', (done) => {
+    const wrapper = shallow(<CourseList listCourses={listCourses}/>);    
+    expect(wrapper.find(CourseListRow)).to.have.lengthOf(5);
+    done();
   });
-  it('empty list', () => {
-    const wrapper = shallow(<CourseList listCourses={ [] }/>);
-    expect(
-      wrapper.containsMatchingElement(<tr><td>No course available yet</td></tr>)
-    ).toBeTruthy();
-    expect(wrapper.find(CourseListRow).length).toEqual(2);
+
+  it('Verify that CourseList renders correctly if you pass an empty array or if you don’t pass the listCourses property', (done) => {
+    let wrapper = shallow(<CourseList listCourses={[]}/>);
+    expect(wrapper.find(CourseListRow)).to.have.lengthOf(3);
+    wrapper = shallow(<CourseList />);''
+    expect(wrapper.find(CourseListRow)).to.have.lengthOf(3);
+    done();
   });
-  it('fill list', () => {
-    const wrapper = shallow(<CourseList listCourses={ listCourses }/>);
-    expect(wrapper.find(CourseListRow).length).toEqual(5);
+
+  it('verify that when you pass a list of courses, the component renders it correctly', (done) => {
+    const wrapper = shallow(<CourseList listCourses={listCourses}/>);
+    expect(wrapper.find(CourseListRow).first().html()).to.equal('<tr><th colSpan="2">Available courses</th></tr>');
+    expect(wrapper.find(CourseListRow)).to.have.lengthOf(5);
+    done();
   });
 });

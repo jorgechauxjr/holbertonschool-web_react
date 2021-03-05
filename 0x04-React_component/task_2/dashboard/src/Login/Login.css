@@ -1,16 +1,15 @@
-.loginForm {
-  padding: 20px 0px;
-}
-input {
-  border: 1px solid #dfdfdf;
-  border-radius: 10px;
-  margin-right: 10px;
+:root {
+  --color-white: #fff;
+  --color-hb: #e1354b;
 }
 
-#btnForm {
-  padding: 3px 6px;
-  background: white;
-  border: 1px solid #dfdfdf;
-  border-radius: 3px;
-  cursor: pointer;
+.App-body {
+  background-color: var(--color-white);
+  padding: 4rem;
+  min-height: 26rem;
+}
+
+.App-body input {
+  margin-right: 9px;
+  margin-left: 9px;
 }
