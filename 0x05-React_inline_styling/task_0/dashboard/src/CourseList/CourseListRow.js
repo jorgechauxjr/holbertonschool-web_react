@@ -3,6 +3,11 @@ import PropTypes from 'prop-types'; // ES6
 
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
   let trContent = '';
+  // https://es.reactjs.org/docs/faq-styling.html
+  // https://es.reactjs.org/docs/dom-elements.html#style
+  let bodyStyle = { backgroundColor: '#f5f5f5ab' };		
+  let headerStyle = { backgroundColor: '#deb5b545' };		
+	const style = isHeader ? headerStyle : bodyStyle;
 
   if (isHeader) {
     if (textSecondCell === null) {
@@ -15,7 +20,7 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
     trContent = (<React.Fragment><td>{textFirstCell}</td><td>{textSecondCell}</td></React.Fragment>);
   }
 
-  return (<tr>{trContent}</tr>);
+  return (<tr style={style}>{trContent}</tr>);
 }
 
 CourseListRow.propTypes = {
