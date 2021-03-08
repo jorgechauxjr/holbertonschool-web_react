@@ -1,10 +1,9 @@
 import React from 'react';
-import './Notifications.css';
 import close_icon from '../assets/close-icon.png';
-import { getLatestNotification } from '../utils/utils';
 import NotificationItem from './NotificationItem';
 import PropTypes from 'prop-types'; // ES6
 import NotificationItemShape from './NotificationItemShape';
+import { StyleSheet, css } from 'aphrodite';
 
 const btnStyle = {
   top: '1em',
@@ -30,15 +29,15 @@ class Notifications extends React.Component {
 
   render() {
     return (
-      <div className="notification-container">
-        <div className="menuItem">Your notifications</div>
+      <div className={css(style.notificationContainer)}>
+        <div className={css(style.menuItem)} id="menuItem">Your notifications</div>
         { this.props.displayDrawer ?
-          (<div className="Notifications">
+          (<div className={css(style.notifications)} id="notifications">
             <button style={btnStyle} aria-label='Close' onClick={() => console.log('Close button has been clicked')}>
               <img src={close_icon} style={imgStyle}/>
             </button>
             <p>Here is the list of notifications</p>
-            <ul>
+            <ul className={css(style.ulStyle)}>
               {this.props.listNotifications.length === 0 ? (<NotificationItem id={0} value="No new notification for now" type='no-new' markAsRead={this.markAsRead} />) : <></>}
               {this.props.listNotifications.map((list) => (<NotificationItem id={list.id} key={list.id} type={list.type} value={list.value} html={list.html} markAsRead={this.markAsRead} />))}
             </ul>
@@ -63,5 +62,26 @@ Notifications.defaultProps = {
   displayDrawer: false,
   listNotifications: []
 };
+
+const style = StyleSheet.create({
+  notifications: {
+    border: '3px dashed #e1354b',
+    paddingLeft: '1rem',
+    paddingRight: '1rem',
+    paddingTop: '0.5rem',
+    width: '25rem',
+  },
+  menuItem: {
+    marginBottom: '10px',
+  },
+  notificationContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'absolute',
+    right: '12px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-end',
+  }
+});
 
 export default Notifications;
