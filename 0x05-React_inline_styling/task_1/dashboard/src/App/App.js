@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'; // ES6
 import { getLatestNotification } from '../utils/utils'
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom'
 import BodySection from '../BodySection/BodySection'
-import './App.css'
+import { StyleSheet, css } from 'aphrodite';
 
 const listCourses = [
   { id: 1, name: 'ES6', credit: 60 },
@@ -45,7 +45,7 @@ class App extends React.Component {
         <Notifications listNotifications={listNotifications}></Notifications>
         <div className='App'>
           <Header></Header>
-          <div className='App-body'>
+          <div className={css(style.body)}>
             {this.props.isLoggedIn ? 
               <BodySectionWithMarginBottom title='Course list'>
                 <CourseList listCourses={listCourses} ></CourseList>
@@ -57,7 +57,9 @@ class App extends React.Component {
               <p>Some news</p>
             </BodySection>
           </div>
+          <div className={css(style.footer)}>
           <Footer></Footer>
+          </div>
         </div>
       </React.Fragment>
     );
@@ -73,5 +75,22 @@ App.defaultProps = {
   isLoggedIn: false,
   logOut: () => void(0)
 };
+
+const style = StyleSheet.create({
+  body: {
+    backgroundColor: '#fff',
+    padding: '4rem',
+    minHeight: '26rem',
+  },
+  footer: {
+    backgroundColor: '#fff',
+    textAlign: 'center',
+    width: '100%',
+    bottom: '0px',
+    borderTop: '3px solid #e1354b',
+    fontStyle: 'italic',
+    padding: '1rem 0'
+  }
+});
 
 export default App;
