@@ -46,7 +46,7 @@ class App extends React.Component {
         <Notifications listNotifications={listNotifications}></Notifications>
         <div className='App'>
           <Header></Header>
-          <div className={css(style.body)}>
+          <div className={css(style.appBody)}>
             {this.props.isLoggedIn ? 
               <BodySectionWithMarginBottom title='Course list'>
                 <CourseList listCourses={listCourses} ></CourseList>
@@ -58,7 +58,7 @@ class App extends React.Component {
               <p>Some news</p>
             </BodySection>
           </div>
-          <div className={css(style.footer)}>
+          <div className={css(style.appFooter)}>
             <Footer></Footer>
           </div>
         </div>
@@ -78,12 +78,12 @@ App.defaultProps = {
 };
 
 const style = StyleSheet.create({
-  body: {
+  appBody: {
     backgroundColor: '#fff',
     padding: '4rem',
     minHeight: '26rem',
   },
-  footer: {
+  appFooter: {
     backgroundColor: '#fff',
     textAlign: 'center',
     width: '100%',

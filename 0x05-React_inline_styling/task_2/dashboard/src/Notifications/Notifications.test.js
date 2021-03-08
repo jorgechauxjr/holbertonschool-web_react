@@ -46,7 +46,8 @@ describe('Test Notification.js', () => {
 
   it('renders the right html', (done) => {
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications}  />);
-    expectChai(wrapper.find(NotificationItem).first().html()).to.equal('<li data-notification-type="default">New course available</li>');
+    expectChai(wrapper.find(NotificationItem).first().props().type).to.equal('default');
+    expectChai(wrapper.find(NotificationItem).first().html()).to.match(/<li data-notification-type="default" class="default_*/);
     done();
   });
 
@@ -91,7 +92,7 @@ describe('Test Notification.js', () => {
 
   it('Verify that when listNotifications is empty the message "Here is the list of notifications is not displayed", but "No new notification for now" is', (done) => {
     const wrapper = shallow(<Notifications displayDrawer={true} />);
-    expectChai(wrapper.find(NotificationItem).first().html()).to.equal('<li data-notification-type="no-new">No new notification for now</li>');
+    expectChai(wrapper.find(NotificationItem).first().html()).to.match(/<li data-notification-type="no-new" class="default*/);
     done();
   });
 
