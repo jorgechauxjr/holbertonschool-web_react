@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'; // ES6
 
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
   let trContent = '';
-  let bodyStyle = { backgroundColor: '#f5f5f5ab' };		
-  let headerStyle = { backgroundColor: '#deb5b545' };		
-	const style = isHeader ? headerStyle : bodyStyle;
+  let bodyStyle = { backgroundColor: '#f5f5f5ab' };
+  let headerStyle = { backgroundColor: '#deb5b545' };
+  const style = isHeader ? headerStyle : bodyStyle;
 
   if (isHeader) {
     if (textSecondCell === null) {
