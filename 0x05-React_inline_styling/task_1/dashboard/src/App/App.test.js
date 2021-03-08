@@ -4,9 +4,18 @@ import { expect as expectChai } from 'chai';
 import App from './App';
 import CourseList from '../CourseList/CourseList';
 import Login from '../Login/Login';
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe('Test App.js', () => {
 	let events = {};
+
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
 
   beforeEach(() => {
     events = {}; // Empty our events before each test case

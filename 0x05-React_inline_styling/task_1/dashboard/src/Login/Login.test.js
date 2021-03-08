@@ -2,9 +2,18 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import App from '../App/App';
-import Login from './Login'
+import Login from './Login';
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe('Test Login.js', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('Login without crashing', (done) => {
     expect(shallow(<Login />).exists());
     done();

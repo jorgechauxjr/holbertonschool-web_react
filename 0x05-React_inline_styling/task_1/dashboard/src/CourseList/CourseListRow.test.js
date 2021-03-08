@@ -1,9 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import CourseListRow from './CourseListRow'
+import CourseListRow from './CourseListRow';
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe('Test CourseListRow.js', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('CourseListRow without crashing', (done) => {
     expect(shallow(<CourseListRow textFirstCell='test' />).exists());
     done();

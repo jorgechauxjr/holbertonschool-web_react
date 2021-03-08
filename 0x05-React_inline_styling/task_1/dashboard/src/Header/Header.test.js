@@ -2,9 +2,18 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import App from '../App/App';
-import Header from './Header'
+import Header from './Header';
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe('Test Header.js', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('Header without crashing', (done) => {
     expect(shallow(<Header />).exists());
     done();

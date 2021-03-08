@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import CourseList from './CourseList'
 import CourseListRow from './CourseListRow';
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe('Test CourseList.js', () => {
   const listCourses = [
@@ -10,6 +11,14 @@ describe('Test CourseList.js', () => {
     { id: 2, name: 'Webpack', credit: 20 },
     { id: 3, name: 'React', credit: 40 }
   ];
+
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
 
   it('CourseList without crashing', (done) => {
     expect(shallow(<CourseList />).exists());

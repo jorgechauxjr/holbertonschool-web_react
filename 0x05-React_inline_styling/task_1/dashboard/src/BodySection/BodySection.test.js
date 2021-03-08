@@ -1,9 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect as expectChai } from 'chai';
-import BodySection from './BodySection'
+import BodySection from './BodySection';
+import { StyleSheetTestUtils } from "aphrodite";
+
 
 describe('Test BodySection.js', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('Render without crashing', (done) => {
     expectChai(shallow(<BodySection title='test' />).exists());
     done();

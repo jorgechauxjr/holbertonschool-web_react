@@ -1,10 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect as expectChai } from 'chai';
-import BodySectionWithMarginBottom from './BodySectionWithMarginBottom'
-import BodySection from './BodySection'
+import BodySectionWithMarginBottom from './BodySectionWithMarginBottom';
+import BodySection from './BodySection';
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe('Test BodySectionWithMarginBottom.js', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('Render without crashing', (done) => {
     expectChai(shallow(<BodySectionWithMarginBottom title='test title' />).exists());
     done();

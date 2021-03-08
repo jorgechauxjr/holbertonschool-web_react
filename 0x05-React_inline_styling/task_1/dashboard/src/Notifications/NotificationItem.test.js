@@ -2,8 +2,17 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { expect as expectChai } from 'chai';
 import NotificationItem from './NotificationItem';
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe('Test NotificationItem.js', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('Notificacionitem without crashing', (done) => {
     expectChai(shallow(<NotificationItem id={1}/>).exists());
     done();

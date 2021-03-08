@@ -1,14 +1,15 @@
 import React from 'react';
-import Notifications from '../Notifications/Notifications'
-import Header from '../Header/Header'
-import Login from '../Login/Login'
-import CourseList from '../CourseList/CourseList'
-import Footer from '../Footer/Footer'
+import Notifications from '../Notifications/Notifications';
+import Header from '../Header/Header';
+import Login from '../Login/Login';
+import CourseList from '../CourseList/CourseList';
+import Footer from '../Footer/Footer';
 import PropTypes from 'prop-types'; // ES6
-import { getLatestNotification } from '../utils/utils'
-import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom'
-import BodySection from '../BodySection/BodySection'
+import { getLatestNotification } from '../utils/utils';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
+import BodySection from '../BodySection/BodySection';
 import { StyleSheet, css } from 'aphrodite';
+
 
 const listCourses = [
   { id: 1, name: 'ES6', credit: 60 },
@@ -58,7 +59,7 @@ class App extends React.Component {
             </BodySection>
           </div>
           <div className={css(style.footer)}>
-          <Footer></Footer>
+            <Footer></Footer>
           </div>
         </div>
       </React.Fragment>

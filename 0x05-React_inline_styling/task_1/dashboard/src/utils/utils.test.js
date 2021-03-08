@@ -1,7 +1,16 @@
 import React from 'react';
 import { getLatestNotification, getFullYear, getFooterCopy } from './utils';
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe('Test Utils.js', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('Function getFullYear', (done) => {
     expect(getFullYear()).toBe(new Date().getFullYear());
     done();

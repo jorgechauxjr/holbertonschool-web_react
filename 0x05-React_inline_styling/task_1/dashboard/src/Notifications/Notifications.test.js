@@ -3,7 +3,8 @@ import { shallow } from 'enzyme';
 import { expect as expectChai } from 'chai';
 import Notifications from './Notifications';
 import NotificationItem from './NotificationItem';
-import { getLatestNotification } from '../utils/utils'
+import { getLatestNotification } from '../utils/utils';
+import { StyleSheetTestUtils } from "aphrodite";
 
 describe('Test Notification.js', () => {
   let listNotifications = [
@@ -24,6 +25,14 @@ describe('Test Notification.js', () => {
     { id: 2, type: 'urgent', value: 'New resume available' },
   ];
 
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('Notification without crashing', (done) => {
     expectChai(shallow(<Notifications />).exists());
     done();
@@ -43,25 +52,25 @@ describe('Test Notification.js', () => {
 
   it('menu item is being displayed when displayDrawer is false', (done) => {
     const wrapper = shallow(<Notifications />);
-    expectChai(wrapper.find('.menuItem')).to.have.lengthOf(1);
+    expectChai(wrapper.find('div#menuItem')).to.have.lengthOf(1);
     done();
   });
 
   it('Add a check that the div.Notifications is not being displayed when displayDrawer is false', (done) => {
     const wrapper = shallow(<Notifications />);
-    expectChai(wrapper.find('.Notifications')).to.have.lengthOf(0);
+    expectChai(wrapper.find('div#notifications')).to.have.lengthOf(0);
     done();
   });
 
   it('Add a check that the menu item is being displayed when displayDrawer is true', (done) => {
     const wrapper = shallow(<Notifications displayDrawer={true} />);
-    expectChai(wrapper.find('.Notifications')).to.have.lengthOf(1);
+    expectChai(wrapper.find('div#notifications')).to.have.lengthOf(1);
     done();
   });
 
   it('Add a check that the div.Notifications is being displayed when displayDrawer is true', (done) => {
     const wrapper = shallow(<Notifications displayDrawer={true}/>);
-    expectChai(wrapper.find('.Notifications')).to.have.lengthOf(1);
+    expectChai(wrapper.find('div#notifications')).to.have.lengthOf(1);
     done();
   });
 
